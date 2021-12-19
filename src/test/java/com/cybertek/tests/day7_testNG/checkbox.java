@@ -9,6 +9,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class checkbox{
 
 
@@ -37,8 +40,6 @@ public class checkbox{
         for ( int i = 2; i < 10; i ++ ) {
             String num = "" + i;
             idAttribute = idAttribute.replace(idAttribute.charAt(32), num.charAt(0));
-
-
             Assert.assertTrue(driver.findElement(By.id(idAttribute)).isSelected());
         }
     }
@@ -56,15 +57,23 @@ public class checkbox{
             idAttribute = idAttribute.replace(idAttribute.charAt(32), num.charAt(0));
             Assert.assertFalse(driver.findElement(By.id(idAttribute)).isSelected());
         }
+
     }
 
 
     @Test
     public void test3(){
-        WebElement deletedPerson = driver.findElement(By.id("ctl00_MainContent_orderGrid_ctl07_OrderSelector"));
-        deletedPerson.click();
+        ArrayList <String> names = new ArrayList<>();
+        String name = "Bob Feather";
+        String personLocator = "(//*[contains(text(),'" + name + "')])//preceding-sibling::td";
+        driver.findElement(By.xpath(personLocator)).click();
         driver.findElement(By.id("ctl00_MainContent_btnDelete")).click();
-        Assert.assertNotEquals(deletedPerson,driver.findElement(By.id("ctl00_MainContent_orderGrid_ctl07_OrderSelector")));
+        for (int i = 2; i < 9; i ++){
+            String locator = "(//*[@id = 'ctl00_MainContent_orderGrid_ctl0" + i + "_OrderSelector'])/../../td[2]";
+            names.add(driver.findElement(By.xpath(locator)).getText());
+        }
+        System.out.println(names);
+        Assert.assertFalse(names.contains(name));
     }
 
 
