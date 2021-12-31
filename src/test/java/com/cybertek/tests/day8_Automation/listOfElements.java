@@ -44,10 +44,23 @@ public class listOfElements {
         Assert.assertEquals(buttons.size(), 6, "Verify button size");
 
         for (WebElement button : buttons) {
-            System.out.println(button.getText());
+            Assert.assertTrue(button.isDisplayed());
         }
 
 
+
+        //click second button
+        buttons.get(1).click();
+    }
+
+
+    @Test
+    public void test2(){
+        driver.get("http://practice.cybertekschool.com/multiple_buttons");
+
+        // it will not throw an Exception error NoSuchElement it just creates the list and list is going to be 0 size;
+        List<WebElement> buttons = driver.findElements(By.tagName("butto0n"));// if there is a wrong locator with find.elements() it does not give exception
+                                                                             // That's why we always have to verify list size with the expected result. In the wrong case of locator the list size is 0;
 
 
     }
