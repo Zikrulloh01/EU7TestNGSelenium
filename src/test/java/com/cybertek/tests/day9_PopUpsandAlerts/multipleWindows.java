@@ -64,6 +64,7 @@ public class multipleWindows {
         String expectedWindow = "New Window";
 
         for (String handle : handles) {
+            // change the window one by one and see if the new window title matches with the expected one, if so break the loop;
             driver.switchTo().window(handle);
             if (driver.getTitle().equals(expectedWindow)){
                 break;
