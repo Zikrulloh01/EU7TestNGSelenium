@@ -48,5 +48,46 @@ public class ActionsTest {
 
     }
 
+    @Test
+    public void dragDrop() throws InterruptedException {
+        driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
+
+        Actions actions = new Actions(driver);
+        WebElement item = driver.findElement(By.id("draggable"));
+        WebElement target = driver.findElement(By.id("droptarget"));
+
+        driver.findElement(By.id("onetrust-accept-btn-handler")).click();
+        Thread.sleep(2999);
+        actions.dragAndDrop(item,target).perform();
+
+
+        //actions.moveToElement(item).clickAndHold().moveToElement(target).pause(2000).release().perform();
+
+        Assert.assertEquals(target.getText(), "You did great!", "Drag drop fail");
+
+
+    }
+
+    @Test
+    public void dragDropChaining() throws InterruptedException {
+        driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
+
+        Actions actions = new Actions(driver);
+        WebElement item = driver.findElement(By.id("draggable"));
+        WebElement target = driver.findElement(By.id("droptarget"));
+
+        driver.findElement(By.id("onetrust-accept-btn-handler")).click();
+        Thread.sleep(2999);
+
+
+        actions.moveToElement(item).clickAndHold().moveToElement(target).pause(2000).release().perform();
+
+        Assert.assertEquals(target.getText(), "You did great!", "Drag drop fail");
+
+
+    }
+
+
+
 
 }
