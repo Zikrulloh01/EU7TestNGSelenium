@@ -2,7 +2,6 @@ package com.cybertek.tests.day3_WebElements;
 
 import com.cybertek.utilities.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.opentelemetry.api.baggage.propagation.W3CBaggagePropagator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
