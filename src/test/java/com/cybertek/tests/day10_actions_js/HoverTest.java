@@ -38,10 +38,14 @@ public class HoverTest {
         Thread.sleep(1000);
 
         for (int i = 0; i < 3; i++) {
-             String xpath = "(//img)[" + (i+1) + "]";
-             WebElement img = driver.findElement(By.xpath(xpath));
-             actions.moveToElement(img).pause(2000).perform();
-            Assert.assertTrue(driver.findElement(By.linkText("View profile")).isDisplayed());
+            String user = "user" + (i+1);
+            String userPath = "(//h5)[" + (i + 1) + "]";
+            String xpath = "(//img)[" + (i+1) + "]";
+            WebElement img = driver.findElement(By.xpath(xpath));
+            WebElement userText = driver.findElement(By.xpath(userPath));
+            actions.moveToElement(img).pause(2000).perform();
+            System.out.println(userText.getText());
+            Assert.assertTrue(userText.isDisplayed());
         }
 
 
