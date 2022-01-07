@@ -10,7 +10,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class webTableExamples {
 
@@ -41,8 +40,6 @@ public class webTableExamples {
 
     @Test
     public void getAllHeaders(){
-
-        WebElement table1 = driver.findElement(By.id("table1"));
         List<WebElement> elements = driver.findElements(By.xpath("//*[@id='table1']//th"));
         System.out.println("Size: " + elements.size());
 
