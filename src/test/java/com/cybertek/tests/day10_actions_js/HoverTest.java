@@ -38,7 +38,7 @@ public class HoverTest {
         Thread.sleep(1000);
 
         for (int i = 0; i < 3; i++) {
-            String user = "user" + (i+1);
+            String user = "name: user" + (i+1);
             String userPath = "(//h5)[" + (i + 1) + "]";
             String xpath = "(//img)[" + (i+1) + "]";
             WebElement img = driver.findElement(By.xpath(xpath));
