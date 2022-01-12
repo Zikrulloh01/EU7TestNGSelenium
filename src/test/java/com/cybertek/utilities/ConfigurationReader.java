@@ -20,7 +20,7 @@ public class ConfigurationReader {
     }
 
 
-    public static String get(String keyName){
+    public static String getKey(String keyName){
         return properties.getProperty(keyName);
     }
 

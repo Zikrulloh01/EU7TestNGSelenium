@@ -15,7 +15,7 @@ public class PropertiesTest {
 
     @BeforeMethod
     public void setUp(){
-        driver = WebDriverFactory.getDriver(get("browser"));
+        driver = WebDriverFactory.getDriver(getKey("browser"));
         driver.manage().window().maximize();
     }
 
@@ -31,16 +31,16 @@ public class PropertiesTest {
 
     @Test
     public void test1(){
-        driver.get(get("url"));
-        System.out.println("get(\"browser\") = " + get("browser"));
-        System.out.println("get(\"url\") = " + get("url"));
+        driver.get(getKey("url"));
+        System.out.println("get(\"browser\") = " + getKey("browser"));
+        System.out.println("get(\"url\") = " + getKey("url"));
     }
 
     @Test
     public void logIn(){
-        driver.get(get("url"));
-        driver.findElement(By.id("prependedInput")).sendKeys(get("driver_username"));
-        driver.findElement(By.id("prependedInput2")).sendKeys(get("driver_password") + Keys.ENTER);
+        driver.get(getKey("url"));
+        driver.findElement(By.id("prependedInput")).sendKeys(getKey("driver_username"));
+        driver.findElement(By.id("prependedInput2")).sendKeys(getKey("driver_password") + Keys.ENTER);
     }
 
 }
