@@ -4,6 +4,7 @@ import com.cybertek.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,6 +18,8 @@ public class Class_001 {
     public void setUp(){
         driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
+        driver.get("http://practice.cybertekschool.com/");
+        driver.findElement(By.linkText("Registration Form")).click();
     }
 
 
@@ -31,9 +34,7 @@ public class Class_001 {
 
     @Test
     public void test1(){
-        driver.get("http://practice.cybertekschool.com/");
         String expectedErrorMessage = "The date of birth is not valid";
-        driver.findElement(By.linkText("Registration Form")).click();
 
         WebElement inputDateOfBirth = driver.findElement(By.xpath("//*[@name='birthday']"));
         inputDateOfBirth.sendKeys("wrong_dob");
@@ -46,9 +47,6 @@ public class Class_001 {
 
     @Test
     public void test2(){
-        driver.get("http://practice.cybertekschool.com/");
-        driver.findElement(By.linkText("Registration Form")).click();
-
         WebElement checkboxCpp = driver.findElement(By.id("inlineCheckbox1"));
         WebElement checkboxJava = driver.findElement(By.id("inlineCheckbox2"));
         WebElement checkboxJS = driver.findElement(By.id("inlineCheckbox3"));
@@ -77,8 +75,6 @@ public class Class_001 {
 
     @Test
     public void test3(){
-        driver.get("http://practice.cybertekschool.com/");
-        driver.findElement(By.linkText("Registration Form")).click();
         String expectedMessage = "first name must be more than 2 and less than 64 characters long";
 
         WebElement fNameInput = driver.findElement(By.name("firstname"));
@@ -89,4 +85,51 @@ public class Class_001 {
         System.out.println("errorMessage.getText() = " + errorMessage.getText());
 
     }
+
+
+    @Test
+    public void test4(){
+        String expectedMessage = "The last name must be more than 2 and less than 64 characters long";
+
+        WebElement lNameInput = driver.findElement(By.name("lastname"));
+        lNameInput.sendKeys("v");
+        WebElement errorMessage = driver.findElement(By.xpath("//*[@data-bv-for='lastname'][2]"));
+
+        Assert.assertEquals(errorMessage.getText(), expectedMessage, "Error message failed");
+        System.out.println("errorMessage.getText() = " + errorMessage.getText());
+
+    }
+
+
+    @Test
+    public void test5() throws InterruptedException {
+        driver.findElement(By.name("firstname")).sendKeys("Zikrulloh");
+        driver.findElement(By.name("lastname")).sendKeys("Islomov");
+        driver.findElement(By.name("username")).sendKeys("islomov");
+        driver.findElement(By.name("email")).sendKeys("zikrilloislomov@gmail.com");
+        driver.findElement(By.name("password")).sendKeys("zikrillo2001");
+        driver.findElement(By.name("phone")).sendKeys("202-555-0160");
+        driver.findElement(By.xpath("//*[@value='male']")).click();
+        driver.findElement(By.name("birthday")).sendKeys("10/20/2001");
+        WebElement department = driver.findElement(By.name("department"));
+        WebElement jobTitle = driver.findElement(By.name("job_title"));
+        Select select = new Select(department);
+        select.selectByValue("DE");
+        select = new Select(jobTitle);
+        select.selectByVisibleText("SDET");
+        WebElement checkboxJava = driver.findElement(By.id("inlineCheckbox2"));
+        checkboxJava.click();
+        driver.findElement(By.id("wooden_spoon")).click();
+        String expectedWellDone = "Well done!";
+        String successMessage = "You've successfully completed registration!";
+
+        WebElement wellDone = driver.findElement(By.tagName("h4"));
+        WebElement successText = driver.findElement(By.tagName("p"));
+
+        Assert.assertEquals(wellDone.getText(), expectedWellDone, "Well Done text fail");
+        Assert.assertEquals(successText.getText(), successMessage, "Success message fail");
+
+        Thread.sleep(2000);
+    }
+
 }
