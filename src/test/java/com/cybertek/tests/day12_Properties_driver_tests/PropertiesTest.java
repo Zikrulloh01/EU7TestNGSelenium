@@ -43,4 +43,5 @@ public class PropertiesTest {
         driver.findElement(By.id("prependedInput2")).sendKeys(getKey("driver_password") + Keys.ENTER);
     }
 
+
 }
