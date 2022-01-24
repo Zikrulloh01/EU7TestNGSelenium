@@ -5,6 +5,7 @@ import com.cybertek.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import static com.cybertek.utilities.ConfigurationReader.getKey;
 
@@ -43,6 +44,12 @@ public class LoginPage {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
+    }
+    public void loginAsDriver(){
+        LoginPage loginPage = new LoginPage();
+        String username = getKey("driver_username");
+        String password = getKey("driver_password");
+        loginPage.logIn(username,password);
     }
 
 }
