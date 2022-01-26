@@ -56,7 +56,7 @@ public class TestBase {
 
 
     @AfterMethod
-    public void tearDown(ITestResult result) throws IOException {
+    public void tearDown(ITestResult result) throws IOException, InterruptedException {
 
         if (result.getStatus()==ITestResult.FAILURE){
             // record the name of the failed test
@@ -70,7 +70,7 @@ public class TestBase {
 
             extentLogger.fail(result.getThrowable());
         }
-
+        Thread.sleep(2000);
         Driver.closeDriver();
     }
 

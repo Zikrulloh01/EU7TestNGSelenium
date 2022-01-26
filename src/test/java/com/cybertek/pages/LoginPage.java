@@ -52,4 +52,11 @@ public class LoginPage {
         loginPage.logIn(username,password);
     }
 
+    public void logInAsSalesManager(){
+        String username = getKey("salesManager_Username");
+        String password = getKey("salesManager_Password");
+        usernameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginButton.click();
+    }
 }
