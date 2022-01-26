@@ -1,4 +1,4 @@
 /.idea/
 /target/
-/pom.xml
+*.xml
 /src/test/resources/file.txt
