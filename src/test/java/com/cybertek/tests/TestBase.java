@@ -5,15 +5,16 @@ import static com.cybertek.utilities.Driver.*;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.cybertek.utilities.BrowserUtils;
 import com.cybertek.utilities.ConfigurationReader;
+import com.cybertek.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
@@ -55,13 +56,27 @@ public class TestBase {
 
 
     @AfterMethod
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(2000);
-        closeDriver();
+    public void tearDown(ITestResult result) throws IOException {
+
+        if (result.getStatus()==ITestResult.FAILURE){
+            // record the name of the failed test
+            extentLogger.fail(result.getName());
+
+            // take a screenshot of it and return location of the screenshot
+            String screenshotPath = BrowserUtils.getScreenshot(result.getName());
+
+            //add screenshot to your report
+            extentLogger.addScreenCaptureFromPath(screenshotPath);
+
+            extentLogger.fail(result.getThrowable());
+        }
+
+        Driver.closeDriver();
     }
 
     @AfterTest
     public void tearDownTest(){
+        // this is when test report is created
         report.flush();
     }
 
