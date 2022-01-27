@@ -10,11 +10,12 @@ import org.testng.annotations.Test;
 
 public class PageSubtitleTest extends TestBase {
 
-    LoginPage loginPage = new LoginPage();
-    BasePage basePage = new DashboardPage();
-    CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+
     @Test
     public void test1(){
+        LoginPage loginPage = new LoginPage();
+        BasePage basePage = new DashboardPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
         loginPage.loginAsDriver();
         Assert.assertEquals(basePage.getPageSubTitle(), "Quick Launchpad", "Subtitles did not match");
         basePage.navigateToModule("Activities", "Calendar Events");

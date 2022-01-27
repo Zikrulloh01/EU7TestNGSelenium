@@ -14,13 +14,14 @@ import java.util.List;
 
 public class RepeatOptionsTest extends TestBase {
 
-    LoginPage loginPage = new LoginPage();
-    BasePage dashboardPage = new DashboardPage();
-    CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
-    CreateCalendarEventsPage createCalendarEventsPage = new CreateCalendarEventsPage();
+
 
     @Test
     public void test1(){
+        LoginPage loginPage = new LoginPage();
+        BasePage dashboardPage = new DashboardPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        CreateCalendarEventsPage createCalendarEventsPage = new CreateCalendarEventsPage();
         loginPage.loginAsDriver();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
         calendarEventsPage.waitUntilLoaderScreenDisappear();
@@ -34,6 +35,10 @@ public class RepeatOptionsTest extends TestBase {
 
     @Test
     public void test2(){
+        LoginPage loginPage = new LoginPage();
+        BasePage dashboardPage = new DashboardPage();
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+        CreateCalendarEventsPage createCalendarEventsPage = new CreateCalendarEventsPage();
         loginPage.loginAsDriver();
         dashboardPage.navigateToModule("Activities", "Calendar Events");
         calendarEventsPage.waitUntilLoaderScreenDisappear();
