@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Vytrack Automation" verbose="1">
+    <test name="Vytrack Smoke test">
+        <packages>
+            <package name="com.cybertek.tests.day14_ExtentReports"></package>
+            <package name="com.cybertek.tests.day13_POM"></package>
+            <package name="com.cybertek.tests.day12_Properties_driver_tests"></package>
+        </packages>
+        <classes>
+            <class name="com.cybertek.tests.day11_Webtables.webTableExamples">
+                <methods>
+                    <include name="printTable"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
