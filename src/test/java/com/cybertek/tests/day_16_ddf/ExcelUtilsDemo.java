@@ -34,8 +34,8 @@ public class ExcelUtilsDemo {
         System.out.println(dataList.get(8).get("lastname"));
 
         // get all data in 2d Array
-        String [][] dataArrray = qa3short.getDataArray();
-        System.out.println("Arrays.deepToString(dataArray) = " + Arrays.deepToString(dataArrray));
+        String [][] dataArray = qa3short.getDataArray();
+        System.out.println("Arrays.deepToString(dataArray) = " + Arrays.deepToString(dataArray));
 
 
     }
